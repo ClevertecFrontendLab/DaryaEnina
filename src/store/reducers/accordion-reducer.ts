@@ -4,7 +4,7 @@ export interface AccordionState {
   accordionSet: boolean;
 }
 const initialState: AccordionState = {
-  accordionSet: false,
+  accordionSet: true,
 };
 
 const accordionSlice = createSlice({

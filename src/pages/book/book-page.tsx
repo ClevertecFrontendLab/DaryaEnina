@@ -1,26 +1,40 @@
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { BookDescription, BookInfo, BookLink, BookRating, BookReview } from '../../components';
 
-import { RootState } from '../../store/store';
+import { AppDispatch, RootState } from '../../store/store';
 
 import './book-page.scss';
 
+import { fetchBook } from '../../store/reducers/book-reducer';
+import { Loader } from '../../components/loader';
+import { Modal } from '../../components/modal/modal';
+
 export const BookPage = () => {
   const { bookId } = useParams();
-  const { books } = useSelector((state: RootState) => state.books);
+  const dispatch = useDispatch<AppDispatch>();
+  const { book, loading, error } = useSelector((state: RootState) => state.book);
 
-  const book = books.filter((item) => item.id === bookId).reduce((item) => item);
+  useEffect(() => {
+    dispatch(fetchBook(bookId));
+  }, [bookId, dispatch]);
 
   return (
     <section className='book-page'>
-      <div className='book__page-wrapper'>
-        <BookLink title={book.title} />
-        <BookInfo image={book.image} title={book.title} authors={book.authors} issueYear={book.issueYear} />
-        <BookRating rating={book.rating} />
-        <BookDescription />
-        <BookReview />
-      </div>
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Modal />
+      ) : book ? (
+        <div className='book__page-wrapper'>
+          <BookLink title={book.title} />
+          <BookInfo images={book.images} title={book.title} authors={book.authors} issueYear={book.issueYear} />
+          <BookRating rating={book.rating} />
+          <BookDescription />
+          <BookReview />
+        </div>
+      ) : null}
     </section>
   );
 };

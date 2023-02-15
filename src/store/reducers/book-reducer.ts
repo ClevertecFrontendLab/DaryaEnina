@@ -1,42 +1,45 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-
 import { baseUrl, config } from '../../api/api';
-import { BooksState, IBooks } from '../../interfaces';
+import { IBook } from '../../interfaces';
 
-const initialState: BooksState = {
-  books: [] as IBooks[],
+interface BookState {
+  book: IBook | null;
+  loading: boolean;
+  error: null | string;
+}
+
+const initialState: BookState = {
+  book: null,
   loading: false,
   error: '',
 };
 
-export const fetchBooks = createAsyncThunk('/', async () => {
-  const { data } = await axios.get(baseUrl, config);
+export const fetchBook = createAsyncThunk('bookSlice/fetchBook', async (bookId: string | undefined) => {
+  const { data } = await axios.get(`${baseUrl}/${bookId}`, config);
 
   return data;
 });
 
-const booksSlice = createSlice({
-  name: 'books',
+const bookSlice = createSlice({
+  name: 'book',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchBooks.pending, (state) => {
-      state.books = [];
+    builder.addCase(fetchBook.pending, (state: BookState) => {
       state.loading = true;
       state.error = null;
     });
-    builder.addCase(fetchBooks.fulfilled, (state, action) => {
+    builder.addCase(fetchBook.fulfilled, (state: BookState, action) => {
+      state.book = action.payload;
       state.loading = false;
-      state.books = action.payload;
       state.error = null;
     });
-    builder.addCase(fetchBooks.rejected, (state, action) => {
+    builder.addCase(fetchBook.rejected, (state: BookState, action) => {
       state.loading = false;
       state.error = action.error.message || 'Ooops... Something wrong';
-      state.books = [];
     });
   },
 });
 
-export const booksReducer = booksSlice.reducer;
+export const bookReducer = bookSlice.reducer;

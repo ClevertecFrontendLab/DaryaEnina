@@ -1,11 +1,12 @@
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 
-import { booksReducer } from './reducers/book-reducer';
+import { booksReducer } from './reducers/books-reducer';
 import { listReducer } from './reducers/list-reducer';
 import { modalReducer } from './reducers/modal-reducer';
 import { burgerReducer } from './reducers/burger-reducer';
 import { accordionReducer } from './reducers/accordion-reducer';
+import { bookReducer } from './reducers/book-reducer';
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     modal: modalReducer,
     burger: burgerReducer,
     accordion: accordionReducer,
+    book: bookReducer,
   },
 });
 

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { BookCard } from '../../components/books/book-card';
 import { NavList } from '../../components/navlist';
-import { fetchBooks } from '../../store/reducers/book-reducer';
+import { fetchBooks } from '../../store/reducers/books-reducer';
 import { AppDispatch, RootState } from '../../store/store';
 import './main-page.scss';
 import '../../components/books/books.scss';
