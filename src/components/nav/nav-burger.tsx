@@ -5,7 +5,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import { links } from '../../data';
-import { Link } from '../../interfaces';
+import { Categories, Links } from '../../interfaces';
 import { changAccordionSetState } from '../../store/reducers/accordion-reducer';
 import { changBurgerState } from '../../store/reducers/burger-reducer';
 import { RootState } from '../../store/store';
@@ -14,6 +14,7 @@ import './nav-burger.scss';
 export const BurgerMenu = () => {
   const { burgerSet } = useSelector((state: RootState) => state.burger);
   const { accordionSet } = useSelector((state: RootState) => state.accordion);
+  const { categories } = useSelector((state: RootState) => state.categories);
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -57,21 +58,37 @@ export const BurgerMenu = () => {
               Витрина книг
             </NavLink>
 
-            <ul className={accordionSet ? 'nav__burger__menu__list' : 'nav__burger__menu__list-hide'}>
-              {links.map((link: Link) => (
-                <li key={link.name}>
-                  <NavLink
-                    data-test-id='burger-books'
-                    onClick={closeBurgerMenu}
-                    className={(data) => (data.isActive ? 'nav__burger__menu__item-active' : 'nav__burger__menu__item')}
-                    to={link.paths}
-                  >
-                    {link.name}
-                  </NavLink>
-                  <span className='nav__burger__menu__item_count'>{link.count}</span>
-                </li>
-              ))}
-            </ul>
+            {categories ? (
+              <ul className={accordionSet ? 'nav__list' : 'nav__list-hide'}>
+                {categories.map((link: Categories) => (
+                  <li key={link.name}>
+                    <NavLink
+                      data-test-id='navigation-books'
+                      className={(data) => (data.isActive ? 'nav__item-active' : 'nav__item')}
+                      to={link.path}
+                    >
+                      {link.name}
+                    </NavLink>
+                    <span className='nav__item_count'>{link.id}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <ul className={accordionSet ? 'nav__list' : 'nav__list-hide'}>
+                {links.map((link: Links) => (
+                  <li key={link.name}>
+                    <NavLink
+                      data-test-id='navigation-books'
+                      className={(data) => (data.isActive ? 'nav__item-active' : 'nav__item')}
+                      to={link.paths}
+                    >
+                      {link.name}
+                    </NavLink>
+                    <span className='nav__item_count'>{link.count}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
           <li className='nav__burger__menu__general-li'>
             <NavLink

@@ -9,6 +9,7 @@ import './main-page.scss';
 import '../../components/books/books.scss';
 import { Loader } from '../../components/loader';
 import { Modal } from '../../components/modal/modal';
+import { fetchCategories } from '../../store/reducers/categories-reducer';
 
 export const MainPage = () => {
   const [listType, setListType] = useState<string>('square');
@@ -19,10 +20,15 @@ export const MainPage = () => {
 
   const dispatch = useDispatch<AppDispatch>();
   const { loading, error, books } = useSelector((state: RootState) => state.books);
+
   const { isWindow } = useSelector((state: RootState) => state.list);
 
   useEffect(() => {
     dispatch(fetchBooks());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchCategories());
   }, [dispatch]);
 
   return (

@@ -1,4 +1,9 @@
-export interface Link {
+export interface Categories {
+  name: string;
+  id: string;
+  path: string;
+}
+export interface Links {
   name: string;
   count: string;
   paths: string;

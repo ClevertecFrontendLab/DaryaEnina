@@ -73,12 +73,11 @@
     font-weight: 600;
     font-size: 1.4rem;
     line-height: 1.8rem;
-
-    display: flex;
-    align-items: center;
     letter-spacing: 0.01rem;
     color: #363636;
     margin-bottom: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     @media screen and (max-width: 768px) {
       font-size: 1.2rem;

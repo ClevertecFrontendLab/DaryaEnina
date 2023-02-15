@@ -11,14 +11,14 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { host } from '../../api/api';
+import { baseUrl } from '../../api/api';
 
 SwiperCore.use([Navigation, Pagination, A11y, Controller]);
 
 export const Slider = ({ images }: IBook) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass>();
 
-  const url = images?.map((img, i) => ({ url: `${host}${img.url}` }));
+  const url = images?.map((img, i) => ({ url: `${baseUrl}${img.url}` }));
 
   return (
     <div className='slider__wrapper'>

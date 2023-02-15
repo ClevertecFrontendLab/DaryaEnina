@@ -1,8 +1,8 @@
-import { Link } from '../interfaces';
+import { Links } from '../interfaces';
 
-export const links: Link[] = [
+export const links: Links[] = [
   { name: 'Все книги', count: '', paths: '/books/all' },
-  { name: 'Бизнес-книги', count: '14', paths: '/books/Бизнес>' },
+  { name: 'Бизнес-книги', count: '14', paths: '/books/buisness>' },
   { name: 'Детективы', count: '8', paths: '/books/detective' },
   { name: 'Детские книги', count: '14', paths: '/books/children' },
   { name: 'Зарубежная литература', count: '2', paths: '/books/country' },

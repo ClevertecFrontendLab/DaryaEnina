@@ -10,8 +10,8 @@ const initialState: BooksState = {
   error: '',
 };
 
-export const fetchBooks = createAsyncThunk('/', async () => {
-  const { data } = await axios.get(baseUrl, config);
+export const fetchBooks = createAsyncThunk('books', async () => {
+  const { data } = await axios.get(`${baseUrl}/api/books`, config);
 
   return data;
 });

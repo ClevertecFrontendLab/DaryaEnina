@@ -12,13 +12,7 @@ type BooksPropsType = {
 export const BookCard = ({ books }: BooksPropsType) => {
   const { isWindow } = useSelector((state: RootState) => state.list);
 
-  const url = books.image?.url;
-
-  let slicedTitle = books.title?.slice(0, 54);
-
-  if (slicedTitle!.length! < books.title!.length) {
-    slicedTitle += '...';
-  }
+  const url = books.image?.url[0];
 
   return (
     <div data-test-id='card' className={isWindow ? 'book__card-quare' : 'book__card-line'}>
@@ -32,7 +26,7 @@ export const BookCard = ({ books }: BooksPropsType) => {
           <Rating rating={books.rating} />
         )}
 
-        <div className='book__card-title'>{slicedTitle}</div>
+        <div className='book__card-title'>{`${books.title?.slice(0, 54)} ...`}</div>
 
         <div className='book__card-author'>
           {books.authors}, {books.issueYear}

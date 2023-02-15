@@ -7,6 +7,7 @@ import { modalReducer } from './reducers/modal-reducer';
 import { burgerReducer } from './reducers/burger-reducer';
 import { accordionReducer } from './reducers/accordion-reducer';
 import { bookReducer } from './reducers/book-reducer';
+import { categoriesReducer } from './reducers/categories-reducer';
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     burger: burgerReducer,
     accordion: accordionReducer,
     book: bookReducer,
+    categories: categoriesReducer,
   },
 });
 

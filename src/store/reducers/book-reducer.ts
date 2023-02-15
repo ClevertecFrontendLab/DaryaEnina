@@ -16,7 +16,7 @@ const initialState: BookState = {
 };
 
 export const fetchBook = createAsyncThunk('bookSlice/fetchBook', async (bookId: string | undefined) => {
-  const { data } = await axios.get(`${baseUrl}/${bookId}`, config);
+  const { data } = await axios.get(`${baseUrl}/api/book/${bookId}`, config);
 
   return data;
 });

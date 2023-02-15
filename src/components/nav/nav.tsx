@@ -1,14 +1,17 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import { links } from '../../data';
-import { Link } from '../../interfaces';
+import { Categories, Links } from '../../interfaces';
 import { changAccordionSetState } from '../../store/reducers/accordion-reducer';
-import { RootState } from '../../store/store';
+import { fetchCategories } from '../../store/reducers/categories-reducer';
+import { AppDispatch, RootState } from '../../store/store';
 import './nav.scss';
 
 export const Nav = () => {
   const { accordionSet } = useSelector((state: RootState) => state.accordion);
-  const dispatch = useDispatch();
+  const { categories } = useSelector((state: RootState) => state.categories);
+  const dispatch = useDispatch<AppDispatch>();
   const location = useLocation();
 
   const toggleAccordion = () => {
@@ -18,6 +21,10 @@ export const Nav = () => {
       dispatch(changAccordionSetState(true));
     }
   };
+
+  // useEffect(() => {
+  //   dispatch(fetchCategories());
+  // }, [dispatch]);
 
   return (
     <nav className='nav'>
@@ -39,21 +46,37 @@ export const Nav = () => {
           >
             Витрина книг
           </NavLink>
-
-          <ul className={accordionSet ? 'nav__list' : 'nav__list-hide'}>
-            {links.map((link: Link) => (
-              <li key={link.name}>
-                <NavLink
-                  data-test-id='navigation-books'
-                  className={(data) => (data.isActive ? 'nav__item-active' : 'nav__item')}
-                  to={link.paths}
-                >
-                  {link.name}
-                </NavLink>
-                <span className='nav__item_count'>{link.count}</span>
-              </li>
-            ))}
-          </ul>
+          {categories ? (
+            <ul className={accordionSet ? 'nav__list' : 'nav__list-hide'}>
+              {categories.map((link: Categories) => (
+                <li key={link.name}>
+                  <NavLink
+                    data-test-id='navigation-books'
+                    className={(data) => (data.isActive ? 'nav__item-active' : 'nav__item')}
+                    to={link.path}
+                  >
+                    {link.name}
+                  </NavLink>
+                  <span className='nav__item_count'>{link.id}</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <ul className={accordionSet ? 'nav__list' : 'nav__list-hide'}>
+              {links.map((link: Links) => (
+                <li key={link.name}>
+                  <NavLink
+                    data-test-id='navigation-books'
+                    className={(data) => (data.isActive ? 'nav__item-active' : 'nav__item')}
+                    to={link.paths}
+                  >
+                    {link.name}
+                  </NavLink>
+                  <span className='nav__item_count'>{link.count}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </li>
         <li className='nav__general-li'>
           <NavLink
