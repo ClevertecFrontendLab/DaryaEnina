@@ -45,7 +45,7 @@ export const MainPage = () => {
           <NavList />
           <div className={isWindow ? 'books__cards-quare' : 'books__cards-line'}>
             {books.map((el) => (
-              <Link key={el.id} to={`/books/${el.categories}/${el.id}`}>
+              <Link key={el.id} to={`/books/all/${el.id}`}>
                 <BookCard key={el.id} books={el} />
               </Link>
             ))}
