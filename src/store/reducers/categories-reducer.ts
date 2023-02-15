@@ -16,7 +16,7 @@ const initialState: CategoriesState = {
 };
 
 export const fetchCategories = createAsyncThunk('categories', async () => {
-  const { data } = await axios.get(`${baseUrl}/api/categories`, config);
+  const { data } = await axios.get(`${baseUrl}/api/categoriess`, config);
 
   return data;
 });

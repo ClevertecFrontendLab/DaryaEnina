@@ -10,17 +10,13 @@ import '../../components/books/books.scss';
 import { Loader } from '../../components/loader';
 import { Modal } from '../../components/modal/modal';
 import { fetchCategories } from '../../store/reducers/categories-reducer';
+import { showModal } from '../../store/reducers/modal-reducer';
 
 export const MainPage = () => {
-  const [listType, setListType] = useState<string>('square');
-
-  const onClickListType = (val: React.SetStateAction<string>) => {
-    setListType(val);
-  };
-
   const dispatch = useDispatch<AppDispatch>();
   const { loading, error, books } = useSelector((state: RootState) => state.books);
   const { errorCategories, loadCategories } = useSelector((state: RootState) => state.categories);
+  const { isShown } = useSelector((state: RootState) => state.modal);
 
   const { isWindow } = useSelector((state: RootState) => state.list);
 
@@ -32,12 +28,18 @@ export const MainPage = () => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (error || errorCategories) {
+      dispatch(showModal(true));
+    }
+  }, [dispatch, error, errorCategories]);
+
   return (
     <section className='main-page'>
-      {loading || loadCategories ? (
-        <Loader />
-      ) : error || errorCategories ? (
+      {isShown ? (
         <Modal />
+      ) : loading || loadCategories ? (
+        <Loader />
       ) : (
         <React.Fragment>
           <NavList />

@@ -4,12 +4,13 @@ import { AppDispatch, RootState } from '../../store/store';
 import warning from '../../assets/warning.svg';
 
 import './modal.scss';
+import { showModal } from '../../store/reducers/modal-reducer';
 
 export const Modal = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const closeError = () => {
-    dispatch(isShown(false));
+    dispatch(showModal(false));
   };
 
   return (
@@ -22,6 +23,3 @@ export const Modal = () => {
     </div>
   );
 };
-function isShown(arg0: boolean): any {
-  throw new Error('Function not implemented.');
-}
