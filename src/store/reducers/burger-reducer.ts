@@ -4,7 +4,7 @@ export interface BurgerState {
   burgerSet: boolean;
 }
 const initialState: BurgerState = {
-  burgerSet: false,
+  burgerSet: true,
 };
 
 const burgerSlice = createSlice({

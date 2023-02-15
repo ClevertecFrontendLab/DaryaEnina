@@ -8,6 +8,7 @@
   backdrop-filter: blur(10px);
   display: grid;
   place-items: center;
+  z-index: 6;
 }
 
 .loader {

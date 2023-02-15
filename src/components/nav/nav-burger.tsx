@@ -57,34 +57,39 @@ export const BurgerMenu = () => {
             >
               Витрина книг
             </NavLink>
-
             {categories ? (
-              <ul className={accordionSet ? 'nav__list' : 'nav__list-hide'}>
+              <ul className={accordionSet ? 'nav__burger__menu__list' : 'nav__burger__menu__list-hide'}>
                 {categories.map((link: Categories) => (
                   <li key={link.name}>
                     <NavLink
-                      data-test-id='navigation-books'
-                      className={(data) => (data.isActive ? 'nav__item-active' : 'nav__item')}
+                      data-test-id='burger-books'
+                      onClick={closeBurgerMenu}
+                      className={(data) =>
+                        data.isActive ? 'nav__burger__menu__item-active' : 'nav__burger__menu__item'
+                      }
                       to={link.path}
                     >
                       {link.name}
                     </NavLink>
-                    <span className='nav__item_count'>{link.id}</span>
+                    <span className='nav__burger__menu__item_count'>{link.id}</span>
                   </li>
                 ))}
               </ul>
             ) : (
-              <ul className={accordionSet ? 'nav__list' : 'nav__list-hide'}>
+              <ul className={accordionSet ? 'nav__burger__menu__list' : 'nav__burger__menu__list-hide'}>
                 {links.map((link: Links) => (
                   <li key={link.name}>
                     <NavLink
-                      data-test-id='navigation-books'
-                      className={(data) => (data.isActive ? 'nav__item-active' : 'nav__item')}
+                      data-test-id='burger-books'
+                      onClick={closeBurgerMenu}
+                      className={(data) =>
+                        data.isActive ? 'nav__burger__menu__item-active' : 'nav__burger__menu__item'
+                      }
                       to={link.paths}
                     >
                       {link.name}
                     </NavLink>
-                    <span className='nav__item_count'>{link.count}</span>
+                    <span className='nav__burger__menu__item_count'>{link.count}</span>
                   </li>
                 ))}
               </ul>
