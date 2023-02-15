@@ -20,6 +20,7 @@ export const MainPage = () => {
 
   const dispatch = useDispatch<AppDispatch>();
   const { loading, error, books } = useSelector((state: RootState) => state.books);
+  const { errorCategories, loadCategories } = useSelector((state: RootState) => state.categories);
 
   const { isWindow } = useSelector((state: RootState) => state.list);
 
@@ -33,9 +34,9 @@ export const MainPage = () => {
 
   return (
     <section className='main-page'>
-      {loading ? (
+      {loading || loadCategories ? (
         <Loader />
-      ) : error ? (
+      ) : error || errorCategories ? (
         <Modal />
       ) : (
         <React.Fragment>

@@ -22,10 +22,6 @@ export const Nav = () => {
     }
   };
 
-  // useEffect(() => {
-  //   dispatch(fetchCategories());
-  // }, [dispatch]);
-
   return (
     <nav className='nav'>
       <ul className='nav__general'>

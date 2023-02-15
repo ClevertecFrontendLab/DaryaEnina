@@ -5,14 +5,14 @@ import { baseUrl, config } from '../../api/api';
 
 interface CategoriesState {
   categories: [];
-  loading: boolean;
-  error: string | null;
+  loadCategories: boolean;
+  errorCategories: string | null;
 }
 
 const initialState: CategoriesState = {
   categories: [],
-  loading: false,
-  error: '',
+  loadCategories: false,
+  errorCategories: '',
 };
 
 export const fetchCategories = createAsyncThunk('categories', async () => {
@@ -28,17 +28,17 @@ const categoriesSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchCategories.pending, (state) => {
       state.categories = [];
-      state.loading = true;
-      state.error = null;
+      state.loadCategories = true;
+      state.errorCategories = null;
     });
     builder.addCase(fetchCategories.fulfilled, (state, action) => {
-      state.loading = false;
+      state.loadCategories = false;
       state.categories = action.payload;
-      state.error = null;
+      state.errorCategories = null;
     });
     builder.addCase(fetchCategories.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.error.message || 'Ooops... Something wrong';
+      state.loadCategories = false;
+      state.errorCategories = action.error.message || 'Ooops... Something wrong';
       state.categories = [];
     });
   },
