@@ -1,22 +1,28 @@
 /* eslint-disable no-negated-condition */
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import search from '../../assets/search.svg';
 import sort from '../../assets/sort.svg';
+import { changView } from '../../store/reducers/list-reducer';
+import { AppDispatch, RootState } from '../../store/store';
 import './navlist.scss';
 
-type IconType = {
-  onClickListType: any;
-  listType: string;
-};
-export const NavList = ({ onClickListType, listType }: IconType) => {
-  const setActiveBtn = (type: unknown) => {
-    onClickListType(type);
-  };
-
+export const NavList = () => {
   const [isSearch, setSearch] = useState(false);
   const [mQuery, setMQuery] = useState({
     matches: window.innerWidth < 670 ? true : false,
   });
+
+  const dispatch = useDispatch<AppDispatch>();
+  const { isWindow } = useSelector((state: RootState) => state.list);
+
+  const windowView = () => {
+    dispatch(changView(true));
+  };
+
+  const listView = () => {
+    dispatch(changView(false));
+  };
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 670px)');
@@ -82,8 +88,8 @@ export const NavList = ({ onClickListType, listType }: IconType) => {
               <button
                 data-test-id='button-menu-view-window'
                 type='button'
-                onClick={() => setActiveBtn('square')}
-                className={listType === 'square' ? 'navList__right-view__type-active' : 'navList__right-view__type'}
+                onClick={() => windowView()}
+                className={isWindow ? 'navList__right-view__type-active' : 'navList__right-view__type'}
               >
                 <svg
                   viewBox='0 0 16 16'
@@ -102,9 +108,8 @@ export const NavList = ({ onClickListType, listType }: IconType) => {
               <button
                 data-test-id='button-menu-view-list'
                 type='button'
-                onClick={() => setActiveBtn('line')}
-                // eslint-disable-next-line no-negated-condition
-                className={listType !== 'square' ? 'navList__right-view__type-active' : 'navList__right-view__type'}
+                onClick={() => listView()}
+                className={!isWindow ? 'navList__right-view__type-active' : 'navList__right-view__type'}
               >
                 <svg
                   className='navList__right-view__icon-line'

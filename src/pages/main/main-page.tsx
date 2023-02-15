@@ -40,7 +40,7 @@ export const MainPage = () => {
         <Modal />
       ) : (
         <React.Fragment>
-          <NavList listType={listType} onClickListType={onClickListType} />
+          <NavList />
           <div className={isWindow ? 'books__cards-quare' : 'books__cards-line'}>
             {books.map((el) => (
               <Link key={el.id} to={`/books/${el.categories}/${el.id}`}>
