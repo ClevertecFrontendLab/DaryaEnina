@@ -1,4 +1,5 @@
 import '../contract/contract.scss';
+import { Loader } from '../loader';
 
 export const Rules = () => (
   <div className='contract__container'>

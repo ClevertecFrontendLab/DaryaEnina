@@ -1,7 +1,8 @@
+import loader from '../../assets/loader.svg';
 import './loader.scss';
 
 export const Loader = () => (
   <div className='loader-wrapper' data-test-id='loader'>
-    <div className='loader' />
+    <img src={loader} alt='loading' className='loader' />
   </div>
 );
