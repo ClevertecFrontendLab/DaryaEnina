@@ -1,0 +1,43 @@
+.contract__container {
+  min-width: 50%;
+  .contract__title {
+    font-weight: 700;
+    font-size: 3.2rem;
+    line-height: 4rem;
+    color: #363636;
+    margin-bottom: 3.2rem;
+    @media screen and (max-width: 450px) {
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 28px;
+    }
+  }
+  .contract__items {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    .contract__list_item {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0.1px;
+      gap: 16px;
+      display: flex;
+      flex-direction: column;
+      @media screen and (max-width: 450px) {
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 20px;
+      }
+      .item_level1 {
+        font-weight: 600;
+      }
+      .contract__list_leve1 {
+        padding-left: 3rem;
+        gap: 16px;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}

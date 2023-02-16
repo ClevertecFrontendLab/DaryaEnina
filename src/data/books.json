@@ -1,0 +1,120 @@
+[
+  {
+    "id": "63ca7627f79ebdac69926ffc",
+    "images": [],
+    "category": "business",
+    "author": "Адитья Бхаргава",
+    "title": "Грокаем алгоритмы. Иллюстрированное пособие для программистов и любопытствующих",
+    "rating": 1,
+    "year": 2019,
+    "isBooked": true,
+    "booked": "24.02"
+  },
+  {
+    "id": "63ca7627549c20ea76acb8fc",
+    "images": [
+      "https://s1-goods.ozstatic.by/480/541/569/10/10569541_0_Rrokaem_algoritmi_Illyustrirovannoe_posobie_dlya_programmistov_i_lyubopitstvuyuschih_Aditya_Bhargava.jpg"
+    ],
+    "category": "business",
+    "author": "Lenore Delaney",
+    "title": "Losee Terrace, Winfred, Louisiana",
+    "rating": 5,
+    "year": 1998,
+    "isBooked": true,
+    "booked": ""
+  },
+  {
+    "id": "63ca762761ae79531f1acb53",
+    "images": [
+      "https://s1-goods.ozstatic.by/480/541/569/10/10569541_0_Rrokaem_algoritmi_Illyustrirovannoe_posobie_dlya_programmistov_i_lyubopitstvuyuschih_Aditya_Bhargava.jpg",
+      "https://avatars.dzeninfra.ru/get-zen_doc/1708012/pub_5e5e77c2170e395c41043f49_5e5e8290ac9a236dd3d946dd/scale_1200",
+      "https://www.nlb.by/upload/medialibrary/b0f/gugo.jpg"
+    ],
+    "category": "business",
+    "author": "Katie Terry",
+    "title": "Грокаем алгоритмы. Иллюстрированное пособие для программистов и любопытствующихFair Street, Stewart, Nevada",
+    "rating": 1,
+    "year": 1975,
+    "isBooked": true,
+    "booked": "21.02"
+  },
+  {
+    "id": "63ca7627eab55a2591cefaac",
+    "images": ["https://binaries.templates.cdn.office.net/support/templates/ru-ru/lt22301254_quantized.png"],
+    "category": "business",
+    "author": "Tucker Langley",
+    "title": "Riverdale Avenue, Hendersonville, Michigan",
+    "rating": 1,
+    "year": 1929,
+    "isBooked": false,
+    "booked": ""
+  },
+  {
+    "id": "63ca7627db47f2a9cf5abfee",
+    "images": [],
+    "category": "business",
+    "author": "Watkins Watts",
+    "title": "Lafayette Walk, Felt, Pennsylvania",
+    "rating": 2,
+    "year": 1983,
+    "isBooked": false,
+    "booked": ""
+  },
+  {
+    "id": "63ca76278e7bae49e60cc08f",
+    "images": [
+      "https://upload.wikimedia.org/wikipedia/ru/1/10/%D0%9E%D0%B1%D0%BB%D0%BE%D0%B6%D0%BA%D0%B0_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%22%D0%9D%D0%B0%D0%B2%D0%B0%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F%22%2C_%D0%9C%D0%B0%D0%BA%D1%81_%D0%A4%D1%80%D0%B0%D0%B9.jpg"
+    ],
+    "category": "business",
+    "author": "Jocelyn Benjamin",
+    "title": "Hillel Place, Lydia, California",
+    "rating": 1,
+    "year": 2014,
+    "isBooked": false,
+    "booked": ""
+  },
+  {
+    "id": "63ca76277acbfd2757ff0e87",
+    "images": ["https://www.nlb.by/upload/medialibrary/b0f/gugo.jpg"],
+    "category": "business",
+    "author": "Lola Andrews",
+    "title": "Exeter Street, Linwood, South Dakota",
+    "rating": 4,
+    "year": 1970,
+    "isBooked": false,
+    "booked": ""
+  },
+  {
+    "id": "63ca76279b279b3f88322e2e",
+    "images": ["https://srisovki.com/wp-content/uploads/2020/11/10-e1606145055626-647x1024.jpg"],
+    "category": "business",
+    "author": "Marylou Burton",
+    "title": "Dictum Court, Witmer, Puerto Rico",
+    "rating": 1,
+    "year": 1973,
+    "isBooked": false,
+    "booked": ""
+  },
+  {
+    "id": "63ca7627b50fe16d3ce08a55",
+    "images": ["https://cdn.eksmo.ru/v2/ITD000000001124593/COVER/cover1__w220.jpg"],
+    "category": "business",
+    "author": "Janie Roman",
+    "title": "McKibben Street, Harrison, Kentucky",
+    "rating": 3,
+    "year": 1971,
+    "isBooked": true,
+    "booked": "28.02"
+  },
+  {
+    "id": "63ca76271344102600937710",
+    "images": [],
+    "category": "business",
+    "author": "Shana Duke",
+    "title": "Hendrix Street, Thermal, Virgin Islands",
+    "rating": 2,
+    "year": 1903,
+    "isBooked": true,
+    "booked": ""
+  }
+]
