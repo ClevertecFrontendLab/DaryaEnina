@@ -1,5 +1,6 @@
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { BookDescription, BookInfo, BookLink, BookRating, BookReview } from '../../components';
 
@@ -22,19 +23,21 @@ export const BookPage = () => {
 
   return (
     <section className='book-page'>
-      {loading ? (
-        <Loader />
-      ) : error ? (
-        <Modal />
-      ) : book ? (
-        <div className='book__page-wrapper'>
-          <BookLink title={book.title} />
-          <BookInfo images={book.images} title={book.title} authors={book.authors} issueYear={book.issueYear} />
-          <BookRating rating={book.rating} />
-          <BookDescription />
-          <BookReview />
-        </div>
-      ) : null}
+      <div className='book__page-wrapper'>
+        <BookLink categories={book?.categories} title={book?.title} />
+        {loading ? (
+          <Loader />
+        ) : error ? (
+          <Modal />
+        ) : book ? (
+          <React.Fragment>
+            <BookInfo images={book.images} title={book.title} authors={book.authors} issueYear={book.issueYear} />
+            <BookRating rating={book.rating} />
+            <BookDescription />
+            <BookReview />
+          </React.Fragment>
+        ) : null}
+      </div>
     </section>
   );
 };
