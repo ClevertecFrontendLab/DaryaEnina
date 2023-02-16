@@ -33,7 +33,7 @@ export const BookPage = () => {
           <React.Fragment>
             <BookInfo images={book.images} title={book.title} authors={book.authors} issueYear={book.issueYear} />
             <BookRating rating={book.rating} />
-            <BookDescription />
+            <BookDescription book={book} />
             <BookReview />
           </React.Fragment>
         ) : null}
