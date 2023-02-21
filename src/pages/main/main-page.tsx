@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { BookCard } from '../../components/books/book-card';
 import { NavList } from '../../components/navlist';
 import { fetchBooks } from '../../store/reducers/books-reducer';
@@ -14,8 +14,9 @@ import { showModal } from '../../store/reducers/modal-reducer';
 
 export const MainPage = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const param = useParams();
   const { loading, error, books } = useSelector((state: RootState) => state.books);
-  const { errorCategories, loadCategories } = useSelector((state: RootState) => state.categories);
+  const { errorCategories, loadCategories, categories } = useSelector((state: RootState) => state.categories);
   const { isShown } = useSelector((state: RootState) => state.modal);
 
   const { isWindow } = useSelector((state: RootState) => state.list);
@@ -44,11 +45,24 @@ export const MainPage = () => {
         <React.Fragment>
           <NavList />
           <div className={isWindow ? 'books__cards-quare' : 'books__cards-line'}>
-            {books.map((el) => (
-              <Link key={el.id} to={`/books/buisness/${el.id}`}>
-                <BookCard key={el.id} books={el} />
-              </Link>
-            ))}
+            {param.category === 'all'
+              ? books.map((el) => (
+                  <Link key={el.id} to={`/books/all/${el.id}`}>
+                    <BookCard key={el.id} books={el} />
+                  </Link>
+                ))
+              : books
+                  .filter(
+                    (book) =>
+                      book.categories?.indexOf(
+                        categories.filter((categoria) => categoria.path === param.category)[0].name
+                      ) !== -1
+                  )
+                  .map((el) => (
+                    <Link key={el.id} to={`/books/${param.category}/${el.id}`}>
+                      <BookCard key={el.id} books={el} />
+                    </Link>
+                  ))}
           </div>
         </React.Fragment>
       )}

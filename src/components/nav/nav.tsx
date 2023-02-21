@@ -1,18 +1,18 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import { links } from '../../data';
 import { Categories, Links } from '../../interfaces';
 import { changAccordionSetState } from '../../store/reducers/accordion-reducer';
-import { fetchCategories } from '../../store/reducers/categories-reducer';
 import { AppDispatch, RootState } from '../../store/store';
 import './nav.scss';
 
 export const Nav = () => {
   const { accordionSet } = useSelector((state: RootState) => state.accordion);
   const { categories } = useSelector((state: RootState) => state.categories);
-  const dispatch = useDispatch<AppDispatch>();
+  const { books } = useSelector((state: RootState) => state.books);
   const location = useLocation();
+
+  const dispatch = useDispatch<AppDispatch>();
 
   const toggleAccordion = () => {
     if (accordionSet) {
@@ -44,16 +44,25 @@ export const Nav = () => {
           </NavLink>
           {categories ? (
             <ul className={accordionSet ? 'nav__list' : 'nav__list-hide'}>
-              {categories.map((link: Categories) => (
-                <li key={link.name}>
+              <NavLink
+                data-test-id='navigation-books'
+                className={(data) => (data.isActive ? 'nav__item-active' : 'nav__item')}
+                to='books/all'
+              >
+                Все книги
+              </NavLink>
+              {categories.map((categoria: Categories) => (
+                <li key={categoria.name}>
                   <NavLink
                     data-test-id='navigation-books'
                     className={(data) => (data.isActive ? 'nav__item-active' : 'nav__item')}
-                    to={link.path}
+                    to={`books/${categoria.path}`}
                   >
-                    {link.name}
+                    {categoria.name}
                   </NavLink>
-                  <span className='nav__item_count'>{link.id}</span>
+                  <span className='nav__item_count'>
+                    {books.filter((e) => e.categories?.indexOf(categoria.name) !== -1).length}
+                  </span>
                 </li>
               ))}
             </ul>

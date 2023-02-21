@@ -2,9 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { baseUrl, config } from '../../api/api';
+import { Categories } from '../../interfaces';
 
 interface CategoriesState {
-  categories: [];
+  categories: Categories[];
   loadCategories: boolean;
   errorCategories: string | null;
 }

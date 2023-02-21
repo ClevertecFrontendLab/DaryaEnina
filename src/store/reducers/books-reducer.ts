@@ -4,6 +4,10 @@ import axios from 'axios';
 import { baseUrl, config } from '../../api/api';
 import { BooksState, IBooks } from '../../interfaces';
 
+export interface CountCategory {
+  [key: string]: number;
+}
+
 const initialState: BooksState = {
   books: [] as IBooks[],
   loading: false,
@@ -39,4 +43,5 @@ const booksSlice = createSlice({
   },
 });
 
+// export const { filterCategories } = booksSlice.actions;
 export const booksReducer = booksSlice.reducer;
