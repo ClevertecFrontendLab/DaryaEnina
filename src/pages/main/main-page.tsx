@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { BookCard } from '../../components/books/book-card';
@@ -11,8 +11,11 @@ import { Loader } from '../../components/loader';
 import { Modal } from '../../components/modal/modal';
 import { fetchCategories } from '../../store/reducers/categories-reducer';
 import { showModal } from '../../store/reducers/modal-reducer';
+import { IBooks } from '../../interfaces';
 
 export const MainPage = () => {
+  const [filteredBooks, setFilteredBooks] = useState<IBooks[]>();
+  const [isSortDown, setSortDown] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
   const param = useParams();
   const { loading, error, books } = useSelector((state: RootState) => state.books);
@@ -26,6 +29,10 @@ export const MainPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    setFilteredBooks(books);
+  }, [books]);
+
+  useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
@@ -35,6 +42,42 @@ export const MainPage = () => {
     }
   }, [dispatch, error, errorCategories]);
 
+  useEffect(() => {
+    if (isSortDown) {
+      const sortedBooks = filteredBooks?.slice().sort((a, b) => {
+        if (a.rating! < b.rating!) {
+          return 1;
+        }
+        if (a.rating! > b.rating!) {
+          return -1;
+        }
+        return 0;
+      });
+
+      setFilteredBooks(sortedBooks);
+    } else {
+      const sortedBooks = filteredBooks?.slice().sort((a, b) => {
+        if (a.rating! > b.rating!) {
+          return 1;
+        }
+        if (a.rating! < b.rating!) {
+          return -1;
+        }
+        return 0;
+      });
+
+      setFilteredBooks(sortedBooks);
+    }
+  }, [isSortDown]);
+
+  const toggleSort = () => {
+    if (isSortDown) {
+      setSortDown(false);
+    } else {
+      setSortDown(true);
+    }
+  };
+
   return (
     <section className='main-page'>
       {isShown ? (
@@ -43,15 +86,15 @@ export const MainPage = () => {
         <Loader />
       ) : (
         <React.Fragment>
-          <NavList />
+          <NavList isSortDown={isSortDown} toggleSort={toggleSort} />
           <div className={isWindow ? 'books__cards-quare' : 'books__cards-line'}>
             {param.category === 'all'
-              ? books.map((el) => (
+              ? filteredBooks?.map((el) => (
                   <Link key={el.id} to={`/books/all/${el.id}`}>
                     <BookCard key={el.id} books={el} />
                   </Link>
                 ))
-              : books
+              : filteredBooks!
                   .filter(
                     (book) =>
                       book.categories?.indexOf(

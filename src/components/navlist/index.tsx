@@ -2,13 +2,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import search from '../../assets/search.svg';
-import sort from '../../assets/sort.svg';
+import sortUp from '../../assets/sortUp.svg';
+import sortDown from '../../assets/sortDown.svg';
 import { changView } from '../../store/reducers/list-reducer';
 import { AppDispatch, RootState } from '../../store/store';
 import './navlist.scss';
 
-export const NavList = () => {
+interface IProps {
+  isSortDown: boolean;
+  toggleSort: () => void;
+}
+export const NavList = ({ isSortDown, toggleSort }: IProps) => {
   const [isSearch, setSearch] = useState(false);
+
   const [mQuery, setMQuery] = useState({
     matches: window.innerWidth < 670 ? true : false,
   });
@@ -76,12 +82,12 @@ export const NavList = () => {
                 />
               </div>
             </div>
-            <div className='navList__left-sort'>
+            <button type='button' onClick={() => toggleSort()} className='navList__left-sort'>
               <div className='navList__left-sort__icon'>
-                <img src={sort} alt='sort' />
+                <img src={isSortDown ? sortDown : sortUp} alt='sort' />
               </div>
               <div className='navList__left-sort__title'>По рейтингу</div>
-            </div>
+            </button>
           </div>
           <div className='navList__right'>
             <div className='navList__right-view'>

@@ -54,7 +54,7 @@ export const Nav = () => {
               {categories.map((categoria: Categories) => (
                 <li key={categoria.name}>
                   <NavLink
-                    data-test-id='navigation-books'
+                    data-test-id={`navigation-${categoria.path}`}
                     className={(data) => (data.isActive ? 'nav__item-active' : 'nav__item')}
                     to={`books/${categoria.path}`}
                   >

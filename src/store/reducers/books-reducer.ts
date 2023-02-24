@@ -17,7 +17,16 @@ const initialState: BooksState = {
 export const fetchBooks = createAsyncThunk('books', async () => {
   const { data } = await axios.get(`${baseUrl}/api/books`, config);
 
-  return data;
+  return data.sort((a: { rating: number }, b: { rating: number }) => {
+    if (a.rating < b.rating) {
+      return 1;
+    }
+    if (a.rating > b.rating) {
+      return -1;
+    }
+
+    return 0;
+  });
 });
 
 const booksSlice = createSlice({
