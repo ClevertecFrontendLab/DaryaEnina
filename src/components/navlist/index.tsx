@@ -82,7 +82,12 @@ export const NavList = ({ isSortDown, toggleSort }: IProps) => {
                 />
               </div>
             </div>
-            <button type='button' onClick={() => toggleSort()} className='navList__left-sort'>
+            <button
+              type='button'
+              onClick={() => toggleSort()}
+              className='navList__left-sort'
+              data-test-id='sort-rating-button'
+            >
               <div className='navList__left-sort__icon'>
                 <img src={isSortDown ? sortDown : sortUp} alt='sort' />
               </div>
