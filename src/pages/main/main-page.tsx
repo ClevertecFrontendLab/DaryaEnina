@@ -14,6 +14,8 @@ import { IBooks } from '../../interfaces';
 import './main-page.scss';
 import '../../components/books/books.scss';
 
+// Добавить фильтры поиска в all
+
 export const MainPage = () => {
   const [filteredBooks, setFilteredBooks] = useState<IBooks[]>();
   const [isSortDown, setSortDown] = useState(true);
@@ -138,18 +140,3 @@ export const MainPage = () => {
     </section>
   );
 };
-
-// function categoryInTheSearchBar(category) {
-//   return (
-//       (category === 'Бизнес') ? 'business' :
-//           (category === 'Психология') ? 'psychology' :
-//               (category === 'Родителям') ? 'parents' :
-//                   (category === 'Нон-фикшн') ? 'non-fiction' :
-//                       (category === 'Художественная литература') ? 'fiction' :
-//                           (category === 'Программирование') ? 'programming' :
-//                               (category === 'Хобби') ? 'hobby' :
-//                                   (category === 'Дизайн') ? 'design' :
-//                                       (category === 'Детские') ? 'childish' :
-//                                           'other'
-//   );
-// }
