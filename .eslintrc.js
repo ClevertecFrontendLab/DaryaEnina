@@ -33,6 +33,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^action' }],
     'no-nested-ternary': 'off',
     'no-unneeded-ternary': 'off',
+    'react-hooks/exhaustive-deps': 'off',
     'no-param-reassign': [
       'error',
       {

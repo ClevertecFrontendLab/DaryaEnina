@@ -60,7 +60,7 @@ export const Nav = () => {
                   >
                     {categoria.name}
                   </NavLink>
-                  <span className='nav__item_count'>
+                  <span className='nav__item_count' data-test-id={`navigation-book-count-for-${categoria.path}`}>
                     {books.filter((e) => e.categories?.indexOf(categoria.name) !== -1).length}
                   </span>
                 </li>

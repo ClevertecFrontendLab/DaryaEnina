@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IBooks } from '../../../interfaces';
 import './book-link.scss';
 

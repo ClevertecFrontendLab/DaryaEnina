@@ -1,5 +1,5 @@
 /* eslint-disable no-negated-condition */
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import search from '../../assets/search.svg';
 import sortUp from '../../assets/sortUp.svg';
@@ -11,8 +11,10 @@ import './navlist.scss';
 interface IProps {
   isSortDown: boolean;
   toggleSort: () => void;
+  searchText: string;
+  setSearchText: Dispatch<SetStateAction<string>>;
 }
-export const NavList = ({ isSortDown, toggleSort }: IProps) => {
+export const NavList = ({ isSortDown, toggleSort, searchText, setSearchText }: IProps) => {
   const [isSearch, setSearch] = useState(false);
 
   const [mQuery, setMQuery] = useState({
@@ -53,6 +55,8 @@ export const NavList = ({ isSortDown, toggleSort }: IProps) => {
             type='text'
             placeholder='Поиск книги или автора…'
             data-test-id='input-search'
+            onChange={(e) => setSearchText(e.target.value)}
+            value={searchText}
           />
           <button
             type='button'
@@ -79,6 +83,8 @@ export const NavList = ({ isSortDown, toggleSort }: IProps) => {
                   data-test-id='input-search'
                   placeholder='Поиск книги или автора…'
                   className='navList__left-search__input'
+                  onChange={(e) => setSearchText(e.target.value)}
+                  value={searchText}
                 />
               </div>
             </div>
