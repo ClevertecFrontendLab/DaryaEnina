@@ -1,17 +1,13 @@
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { IBooks } from '../../../interfaces';
 import { fetchBooks } from '../../../store/reducers/books-reducer';
 import { AppDispatch } from '../../../store/store';
 import './book-link.scss';
 
-// dispatch наверное на по категории сделать в сторе
-// проверить перевод
-
 export const BookLink = ({ title, categories }: IBooks) => {
   const { category } = useParams();
   const dispatch = useDispatch<AppDispatch>();
-  console.log(category);
 
   function categoryTranslate(categoria: string) {
     return categoria === 'all'

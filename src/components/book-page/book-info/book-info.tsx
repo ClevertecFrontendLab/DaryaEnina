@@ -1,4 +1,4 @@
-import { BookImg, IBook } from '../../../interfaces';
+import { IBook } from '../../../interfaces';
 import { BookPageToBookButton } from '../../buttons';
 import './book-info.scss';
 import { Slider } from '../../slider';
