@@ -78,6 +78,7 @@
         margin-right: 0.8rem;
         border: none;
         background-color: inherit;
+        background-image: url('../../assets/search.svg');
         @media screen and (max-width: 670px) {
           margin-right: 0;
         }
@@ -91,6 +92,7 @@
           outline: none;
           border: none;
           width: 100%;
+          caret-color: #f83600;
         }
       }
     }
@@ -100,6 +102,7 @@
       gap: 0.8rem;
       height: 3.8rem;
       padding: 0.8rem 1.6rem;
+      border: 0;
       cursor: pointer;
 
       background: #ffffff;

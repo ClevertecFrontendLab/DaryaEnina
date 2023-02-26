@@ -75,9 +75,15 @@
 }
 .book__link-link {
   display: inline;
-  font-size: 18px;
+  font-size: 1.4rem;
   color: #a7a7a7;
-
+  button {
+    border: 0;
+    outline: 0;
+    background: inherit;
+    color: #a7a7a7;
+    cursor: pointer;
+  }
   &:not(:first-child) {
     padding-left: 3.6rem;
     background-image: url('../../../assets/seporator.png');

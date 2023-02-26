@@ -1,3 +1,22 @@
 .main-page {
   width: 100%;
 }
+
+.empty__error {
+  margin: 0 auto;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  text-align: center;
+  letter-spacing: 0.1px;
+  color: #a7a7a7;
+  margin-top: 20rem;
+  @media screen and (max-width: 890px) {
+    margin-top: 22.6rem;
+  }
+  @media screen and (max-width: 668px) {
+    margin-top: 13.7rem;
+    font-size: 18px;
+    line-height: 28px;
+  }
+}

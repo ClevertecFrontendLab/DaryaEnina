@@ -78,7 +78,15 @@
     margin-bottom: 0.8rem;
     overflow: hidden;
     text-overflow: ellipsis;
+    .highlighted-text {
+      background: none;
+      color: #ff5253;
+    }
 
+    .book-name--highlighted {
+      background: none;
+      color: #ff5253;
+    }
     @media screen and (max-width: 768px) {
       font-size: 1.2rem;
       font-weight: 700;

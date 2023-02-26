@@ -1,14 +1,24 @@
 /* eslint-disable no-negated-condition */
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import search from '../../assets/search.svg';
-import sort from '../../assets/sort.svg';
+import searchFocus from '../../assets/search-focus.svg';
+import sortUp from '../../assets/sortUp.svg';
+import sortDown from '../../assets/sortDown.svg';
 import { changView } from '../../store/reducers/list-reducer';
 import { AppDispatch, RootState } from '../../store/store';
 import './navlist.scss';
 
-export const NavList = () => {
+interface IProps {
+  isSortDown: boolean;
+  toggleSort: () => void;
+  searchText: string;
+  setSearchText: Dispatch<SetStateAction<string>>;
+}
+export const NavList = ({ isSortDown, toggleSort, searchText, setSearchText }: IProps) => {
   const [isSearch, setSearch] = useState(false);
+  const [focus, setFocus] = useState(false);
+
   const [mQuery, setMQuery] = useState({
     matches: window.innerWidth < 670 ? true : false,
   });
@@ -47,6 +57,8 @@ export const NavList = () => {
             type='text'
             placeholder='Поиск книги или автора…'
             data-test-id='input-search'
+            onChange={(e) => setSearchText(e.target.value)}
+            value={searchText}
           />
           <button
             type='button'
@@ -65,7 +77,7 @@ export const NavList = () => {
                 className='navList__left-search__icon'
                 onClick={handleChangeSearch}
               >
-                <img src={search} alt='search' />
+                <img src={focus ? searchFocus : search} alt='search' />
               </button>
               <div className='navList__left-search__wrapper'>
                 <input
@@ -73,15 +85,24 @@ export const NavList = () => {
                   data-test-id='input-search'
                   placeholder='Поиск книги или автора…'
                   className='navList__left-search__input'
+                  onFocus={() => setFocus(true)}
+                  onBlur={() => setFocus(false)}
+                  onChange={(e) => setSearchText(e.target.value)}
+                  value={searchText}
                 />
               </div>
             </div>
-            <div className='navList__left-sort'>
+            <button
+              type='button'
+              onClick={() => toggleSort()}
+              className='navList__left-sort'
+              data-test-id='sort-rating-button'
+            >
               <div className='navList__left-sort__icon'>
-                <img src={sort} alt='sort' />
+                <img src={isSortDown ? sortDown : sortUp} alt='sort' />
               </div>
               <div className='navList__left-sort__title'>По рейтингу</div>
-            </div>
+            </button>
           </div>
           <div className='navList__right'>
             <div className='navList__right-view'>

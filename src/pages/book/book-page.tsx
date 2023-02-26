@@ -31,7 +31,13 @@ export const BookPage = () => {
           <Modal />
         ) : book ? (
           <React.Fragment>
-            <BookInfo images={book.images} title={book.title} authors={book.authors} issueYear={book.issueYear} />
+            <BookInfo
+              images={book.images}
+              title={book.title}
+              authors={book.authors}
+              issueYear={book.issueYear}
+              description={book.description}
+            />
             <BookRating rating={book.rating} />
             <BookDescription book={book} />
             <BookReview />

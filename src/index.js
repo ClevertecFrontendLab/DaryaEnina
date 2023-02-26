@@ -25,7 +25,7 @@ root.render(
               <Route path='/rules' element={<Rules />} />
               <Route path='/contract' element={<Contract />} />
             </Route>
-            <Route path='/books/:categories/:bookId' element={<BookPage />} />
+            <Route path='/books/:category/:bookId' element={<BookPage />} />
           </Route>
         </Routes>
       </Provider>

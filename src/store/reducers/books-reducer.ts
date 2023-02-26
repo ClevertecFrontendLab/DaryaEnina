@@ -4,6 +4,10 @@ import axios from 'axios';
 import { baseUrl, config } from '../../api/api';
 import { BooksState, IBooks } from '../../interfaces';
 
+export interface CountCategory {
+  [key: string]: number;
+}
+
 const initialState: BooksState = {
   books: [] as IBooks[],
   loading: false,
@@ -13,7 +17,16 @@ const initialState: BooksState = {
 export const fetchBooks = createAsyncThunk('books', async () => {
   const { data } = await axios.get(`${baseUrl}/api/books`, config);
 
-  return data;
+  return data.sort((a: { rating: number }, b: { rating: number }) => {
+    if (a.rating < b.rating) {
+      return 1;
+    }
+    if (a.rating > b.rating) {
+      return -1;
+    }
+
+    return 0;
+  });
 });
 
 const booksSlice = createSlice({
@@ -39,4 +52,5 @@ const booksSlice = createSlice({
   },
 });
 
+// export const { filterCategories } = booksSlice.actions;
 export const booksReducer = booksSlice.reducer;

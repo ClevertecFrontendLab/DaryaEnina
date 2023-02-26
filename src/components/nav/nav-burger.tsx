@@ -15,6 +15,7 @@ export const BurgerMenu = () => {
   const { burgerSet } = useSelector((state: RootState) => state.burger);
   const { accordionSet } = useSelector((state: RootState) => state.accordion);
   const { categories } = useSelector((state: RootState) => state.categories);
+  const { books } = useSelector((state: RootState) => state.books);
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -59,19 +60,32 @@ export const BurgerMenu = () => {
             </NavLink>
             {categories ? (
               <ul className={accordionSet ? 'nav__burger__menu__list' : 'nav__burger__menu__list-hide'}>
-                {categories.map((link: Categories) => (
-                  <li key={link.name}>
+                <NavLink
+                  data-test-id='burger-books'
+                  onClick={closeBurgerMenu}
+                  className={(data) => (data.isActive ? 'nav__burger__menu__item-active' : 'nav__burger__menu__item')}
+                  to='books/all'
+                >
+                  Все книги
+                </NavLink>
+                {categories.map((categoria: Categories) => (
+                  <li key={categoria.name}>
                     <NavLink
-                      data-test-id='burger-books'
+                      data-test-id={`burger-${categoria.path}`}
                       onClick={closeBurgerMenu}
                       className={(data) =>
                         data.isActive ? 'nav__burger__menu__item-active' : 'nav__burger__menu__item'
                       }
-                      to={link.path}
+                      to={`books/${categoria.path}`}
                     >
-                      {link.name}
+                      {categoria.name}
                     </NavLink>
-                    <span className='nav__burger__menu__item_count'>{link.id}</span>
+                    <span
+                      className='nav__burger__menu__item_count'
+                      data-test-id={`burger-book-count-for-${categoria.path}`}
+                    >
+                      {books.filter((e) => e.categories?.indexOf(categoria.name) !== -1).length}
+                    </span>
                   </li>
                 ))}
               </ul>
