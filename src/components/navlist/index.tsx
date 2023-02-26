@@ -2,6 +2,7 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import search from '../../assets/search.svg';
+import searchFocus from '../../assets/search-focus.svg';
 import sortUp from '../../assets/sortUp.svg';
 import sortDown from '../../assets/sortDown.svg';
 import { changView } from '../../store/reducers/list-reducer';
@@ -16,6 +17,7 @@ interface IProps {
 }
 export const NavList = ({ isSortDown, toggleSort, searchText, setSearchText }: IProps) => {
   const [isSearch, setSearch] = useState(false);
+  const [focus, setFocus] = useState(false);
 
   const [mQuery, setMQuery] = useState({
     matches: window.innerWidth < 670 ? true : false,
@@ -75,7 +77,7 @@ export const NavList = ({ isSortDown, toggleSort, searchText, setSearchText }: I
                 className='navList__left-search__icon'
                 onClick={handleChangeSearch}
               >
-                <img src={search} alt='search' />
+                <img src={focus ? searchFocus : search} alt='search' />
               </button>
               <div className='navList__left-search__wrapper'>
                 <input
@@ -83,6 +85,8 @@ export const NavList = ({ isSortDown, toggleSort, searchText, setSearchText }: I
                   data-test-id='input-search'
                   placeholder='Поиск книги или автора…'
                   className='navList__left-search__input'
+                  onFocus={() => setFocus(true)}
+                  onBlur={() => setFocus(false)}
                   onChange={(e) => setSearchText(e.target.value)}
                   value={searchText}
                 />
