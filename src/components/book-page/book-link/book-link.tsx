@@ -11,6 +11,7 @@ import './book-link.scss';
 export const BookLink = ({ title, categories }: IBooks) => {
   const { category } = useParams();
   const dispatch = useDispatch<AppDispatch>();
+  console.log(category);
 
   function categoryTranslate(categoria: string) {
     return categoria === 'all'
@@ -42,7 +43,7 @@ export const BookLink = ({ title, categories }: IBooks) => {
         <ul className='book__link-list'>
           <li className='book__link-link'>
             {categories ? (
-              <Link to={`/books/${category}`} onClick={() => dispatch(fetchBooks())}>
+              <Link to={`/books/${category}`} data-test-id='breadcrumbs-link' onClick={() => dispatch(fetchBooks())}>
                 {categoryTranslate(category!)}
               </Link>
             ) : (
@@ -50,7 +51,9 @@ export const BookLink = ({ title, categories }: IBooks) => {
             )}
           </li>
           <li className='book__link-link'>
-            <Link to='#'>{title}</Link>
+            <Link to='#' data-test-id='book-name'>
+              {title}
+            </Link>
           </li>
         </ul>
       </div>

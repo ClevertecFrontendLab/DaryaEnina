@@ -99,6 +99,11 @@ export const MainPage = () => {
           />
           <div className={isWindow ? 'books__cards-quare' : 'books__cards-line'}>
             {param.category === 'all' ? (
+              // filteredBooks!.filter((el) => el.title?.toLowerCase().includes(searchText.toLowerCase())).length < 1 ? (
+              //   <div className='empty__error' data-test-id='search-result-not-found'>
+              //     По запросу ничего не найдено
+              //   </div>
+              // ) : (
               filteredBooks
                 ?.filter((el) => el.title?.toLowerCase().includes(searchText.toLowerCase()))
                 .map((el) => (

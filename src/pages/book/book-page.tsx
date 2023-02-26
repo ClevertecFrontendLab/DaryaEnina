@@ -13,7 +13,7 @@ import { Loader } from '../../components/loader';
 import { Modal } from '../../components/modal/modal';
 
 export const BookPage = () => {
-  const { bookId, category } = useParams();
+  const { bookId } = useParams();
   const dispatch = useDispatch<AppDispatch>();
   const { book, loading, error } = useSelector((state: RootState) => state.book);
 
